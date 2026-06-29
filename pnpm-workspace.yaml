@@ -1,0 +1,4 @@
+# Root of the blublux monorepo. See references/00-architecture.md
+packages:
+  - 'packages/*'
+  - 'apps/*'

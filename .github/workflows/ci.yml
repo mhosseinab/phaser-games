@@ -1,28 +1,19 @@
 name: CI
 on:
-  push:
-    branches: [blublux-games/main]
-  pull_request:
-    branches: [blublux-games/main]
-
-env:
-  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+  push: { branches: [main] }
+  pull_request: { branches: [main] }
 
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        with: { fetch-depth: 0 }
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
+        with: { version: 9 }
       - uses: actions/setup-node@v4
-        with:
-          node-version: 22
+        with: { node-version: 22 }
 
       - name: Locate pnpm store
         id: pnpm
