@@ -6,7 +6,7 @@ This file is the durable cross-session source of truth for the build status of s
 
 | Step | Goal | Status | Attempts | Branch | SHA | Note |
 |---|---|---|---|---|---|---|
-| S1 | Scaffold monorepo, Turborepo, `@blublux/config`, CI | pending | 0 | - | - | - |
+| S1 | Scaffold monorepo, Turborepo, `@blublux/config`, CI | passed | 1 | blublux-games/main | 995a390 | - |
 | S2 | `Rng` + `Clock` seams (pure, TDD, determinism) | pending | 0 | - | - | - |
 | S3 | Core interfaces / seams + fakes | pending | 0 | - | - | - |
 | S4 | View scaffold + scale helper + pool + audio (Phaser 4) | pending | 0 | - | - | - |
