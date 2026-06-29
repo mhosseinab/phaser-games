@@ -1,7 +1,0 @@
-# Cloudflare Pages / Netlify-style headers. Vite content-hashes /assets/* → cache forever.
-/assets/*
-  Cache-Control: public, max-age=31536000, immutable
-
-# HTML and the asset pack manifest must revalidate so updates ship.
-/index.html
-  Cache-Control: public, max-age=0, must-revalidate

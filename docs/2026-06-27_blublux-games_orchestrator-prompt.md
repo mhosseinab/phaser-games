@@ -14,7 +14,7 @@ companion_driver: 2026-06-27_blublux-games_workflow.md
 
 In-context subagent orchestrator. It drives worker + reviewer subagents through S1–S33 with a worker→reviewer→fix loop, hard gates, and a durable progress file. **Primary driver** (the [[2026-06-27_blublux-games_workflow|dynamic-workflow brief]] covers the gate-free segments for extra parallelism). Chosen because the build has **inline human gates** — S15 (review the reference slice before scaling), S31 (provide signing secrets / paid infra), S32 (device sign-off), S33 (store submission) — where the orchestrator stops inline, takes your "go", and continues in the same session, whereas a workflow would force a separate relaunch per gate.
 
-**How to use.** Open an agent session at `Projects/blublux-games/` (after S1 creates it; for S1, at the workspace root). Paste the fenced block below. Read the Caveats first. To make it a reusable command, drop the fenced block into `.claude/commands/`.
+**How to use.** Open an agent session at the workspace root `~/workspace/blublux-phaser-games`. Paste the fenced block below. Read the Caveats first. To make it a reusable command, drop the fenced block into `.claude/commands/`.
 
 ---
 
@@ -23,25 +23,27 @@ You are the ORCHESTRATOR for the BluBlux Games build (slug: blublux-games). You 
 feature code yourself — you drive worker and reviewer SUBAGENTS through the numbered steps and
 keep your own context small.
 
+REPO ROOT: ~/workspace/blublux-phaser-games   (the monorepo workspace)
+
 SOURCES OF TRUTH (read first; do not duplicate wholesale into your context):
-- 2026-06-27_blublux-games_implementation-steps.md — steps S1..S33, each a ready prompt + Verify
+- docs/2026-06-27_blublux-games_implementation-steps.md — steps S1..S33, each a ready prompt + Verify
   block + the dependency graph. This is the script you execute.
-- 2026-06-27_blublux-games_plan.md — rationale + the decided forks (§4).
-- ~/Documents/Claude/Skills/phaser4-game-factory/ — stack/architecture/monetization/CI authority.
+- docs/2026-06-27_blublux-games_plan.md — rationale + the decided forks (§4).
+- .agents/skills/phaser4-game-factory/ — stack/architecture/monetization/CI authority.
   SKILL.md + references/00..05 + assets/templates/{monorepo,engine,game,ci}. Steps point to its §s.
-- ~/Documents/Claude/CLAUDE.md — owner rules (scope @blublux/*, appIds com.blublux.*, English only,
+- .agents/AGENTS.md — owner rules (scope @blublux/*, appIds com.blublux.*, English only,
   Conventional Commits, the §2.1 engineering principles). Plus the files each step names.
 - For any Phaser 4 API not in the skill: pull live v4 docs via Context7 (resolve-library-id phaser →
   query-docs). NEVER use Phaser 3 memory.
 
 DURABLE STATE:
-- Maintain 2026-06-27_blublux-games_progress.md as the S1..S33 table (status | attempts | branch |
+- Maintain docs/2026-06-27_blublux-games_progress.md as the S1..S33 table (status | attempts | branch |
   SHA | note). On start/resume, READ it to know where you are. NEVER rely on the transcript for
   state — rely on this file.
 
 SETUP (once, before S1):
-1. Read the steps doc + the plan §4 + CLAUDE.md + the skill's SKILL.md. Confirm
-   2026-06-27_blublux-games_progress.md is seeded S1..S33 = pending (create from the tracker if missing).
+1. Read the steps doc + the plan §4 + .agents/AGENTS.md + the skill's SKILL.md. Confirm
+   docs/2026-06-27_blublux-games_progress.md is seeded S1..S33 = pending (create from the tracker if missing).
 2. Review routing PER AREA (confirm what's available; fall back to a FRESH reviewer subagent + the
    checklist in REVIEW if a named reviewer is absent):
      - monetization / consent / privacy diffs → a security-grade review (/security-review if present):
@@ -67,7 +69,7 @@ steps joined by an edge or that edit the same files. Known parallel sets:
 1) DISPATCH WORKER (a FRESH subagent every time — the main context-hygiene mechanism):
    - From blublux-games/main, create branch blublux-games/S<N> (worktree if supported).
    - Spawn a worker whose prompt is:
-       "Read CLAUDE.md, the phaser4-game-factory references the step names, and the files named in
+       "Read .agents/AGENTS.md, the phaser4-game-factory references the step names, and the files named in
         the step FIRST. Implement ONLY this step:
         <paste the step's fenced prompt from the steps doc>.
         Before editing, write a short plan; if a plan-review tool exists, get feedback and revise;

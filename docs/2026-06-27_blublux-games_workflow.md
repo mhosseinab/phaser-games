@@ -41,9 +41,8 @@ Paste one of the briefs below after `ultracode:`. Approve the planned phases; wa
 ### Brief — WF-1 (Foundation, S1–S8)
 ```
 ultracode: Run the BluBlux Games FOUNDATION segment (steps S1..S8) as a dynamic workflow.
-Read 2026-06-27_blublux-games_implementation-steps.md, _plan.md (§4 decisions), the
-phaser4-game-factory skill (SKILL.md + references/00,03 + assets/templates), and ~/Documents/Claude/
-CLAUDE.md. Drive S1..S8 as a DAG: S1 first; then run {S2,S3,S4} in parallel (disjoint files); then
+Read docs/2026-06-27_blublux-games_implementation-steps.md, docs/2026-06-27_blublux-games_plan.md (§4 decisions), the
+.agents/skills/phaser4-game-factory/SKILL.md (plus references/00,03 + assets/templates), and .agents/AGENTS.md. Drive S1..S8 as a DAG: S1 first; then run {S2,S3,S4} in parallel (disjoint files); then
 {S5,S6,S7,S8} in parallel after S3. Per step spawn:
  - WORKER: implement ONLY that step's prompt from the steps doc; honor model purity / DI / no-SDK-
    outside-adapters / UMP-gates-loading / events-post-consent; for Phaser 4 APIs use Context7 (v4);
@@ -58,7 +57,7 @@ CLAUDE.md. Drive S1..S8 as a DAG: S1 first; then run {S2,S3,S4} in parallel (dis
  - FIX loop on CHANGES_REQUESTED (fresh subagent; re-run Verify; re-review); cap 3 cycles, else stop
    the segment and mark the step blocked.
 On PASS, merge S<N> → blublux-games/main and have a subagent append (status, SHA, one-line note) to
-2026-06-27_blublux-games_progress.md. Parallelize {S2,S3,S4} and {S5,S6,S7,S8}; serialize anything
+docs/2026-06-27_blublux-games_progress.md. Parallelize {S2,S3,S4} and {S5,S6,S7,S8}; serialize anything
 sharing a file. STOP after S8 and summarize — do NOT enter P2/P3.
 ```
 
@@ -66,7 +65,7 @@ sharing a file. STOP after S8 and summarize — do NOT enter P2/P3.
 ```
 ultracode: Run the BluBlux Games PURE-MODEL segment (S9,S10,S11 for engine-sort and S20,S21 for
 engine-block) as a dynamic workflow — the two engines are disjoint packages, run them as parallel
-tracks. Prereq: S2 (Rng/Clock seam) is passed. Read the steps doc, plan §4.2/§4.5, and CLAUDE.md.
+tracks. Prereq: S2 (Rng/Clock seam) is passed. Read docs/2026-06-27_blublux-games_implementation-steps.md, docs/2026-06-27_blublux-games_plan.md (§4.2/§4.5), and .agents/AGENTS.md.
 DAG: S9 → {S10,S11} (engine-sort) ∥ S20 → S21 (engine-block). These are TDD steps — the WORKER must
 write the failing Vitest FIRST, then implement, then refactor; the REVIEWER must confirm the tests
 drove the code and that:
@@ -77,21 +76,19 @@ drove the code and that:
    the brief; game-over is correct; the bag is deterministic with the anti-frustration bias.
 Worker runs each step's Verify and pastes output; commit per step; reviewer returns VERDICT + file:line;
 3-cycle fix cap. For the heavy solvability test, consider Pattern 4 (3-vote consensus review) from
-the migration-orchestration workflow-patterns reference for S10. Merge on PASS, append to the progress
-file. STOP after S11 and S21 — do NOT start S12 (the slice is the orchestrator's gated work).
+the migration-orchestration workflow-patterns reference for S10. Merge on PASS, append to docs/2026-06-27_blublux-games_progress.md. STOP after S11 and S21 — do NOT start S12 (the slice is the orchestrator's gated work).
 ```
 
 ### Brief — WF-3 (Sort reskins, S16–S19 — only after the S15 GO)
 ```
 ultracode: Run the BluBlux Games SORT-RESKIN segment (S16,S17,S18 → S19) as a dynamic workflow.
-ONLY launch this after I have given the S15 review-gate GO. Read the steps doc + plan §4.1 (Option B)
-+ §5.7. DAG: {S16,S17,S18} in parallel (disjoint theme folders under apps/sort-collection/src/themes/)
+ONLY launch this after I have given the S15 review-gate GO. Read docs/2026-06-27_blublux-games_implementation-steps.md + docs/2026-06-27_blublux-games_plan.md (§4.1 Option B + §5.7). DAG: {S16,S17,S18} in parallel (disjoint theme folders under apps/sort-collection/src/themes/)
 → S19. CRITICAL serialization: all three register in apps/sort-collection/src/ThemePicker.ts — that
 file is SHARED, so the worker for each reskin must make ONLY its one-line registration edit and the
 runtime must serialize those three edits (never concurrent) even though the theme folders are disjoint;
 the reviewer FAILS any reskin whose diff touches packages/engine-sort (DRY/Option-B guarantee — themes
 are config only). Worker runs the theme-validity Verify (palette length, symbol-per-color a11y, atlas
-≤2048²) and pastes output; commit per step; 3-cycle fix cap; merge on PASS; append to progress. STOP
+≤2048²) and pastes output; commit per step; 3-cycle fix cap; merge on PASS; append to docs/2026-06-27_blublux-games_progress.md. STOP
 after S19 — hand back to the orchestrator for the block apps.
 ```
 

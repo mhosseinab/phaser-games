@@ -1,3 +1,10 @@
+---
+name: blublux-workflow-reskins
+description: >-
+  Runs the gate-free sort reskins segment (WF-3, steps S16–S19) for four themes inside sort-collection.
+  Use when the user wants to start/run the sort reskins workflow, WF-3, steps S16-S19, or reskin segment.
+---
+
 # BluBlux Workflow — Sort Reskins (WF-3, S16–S19)
 
 Run the gate-free **sort reskin** segment — four themes inside `sort-collection`.

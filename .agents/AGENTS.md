@@ -6,36 +6,41 @@ Phaser 4 + Capacitor monorepo building six puzzle games from two pure-model engi
 
 | Skill | Role |
 |---|---|
-| [blublux-games](file:///Users/zen/workspace/blublux-phaser-games/.agents/skills/blublux-games) | Project context: architecture, locked decisions, verify commands, doc map |
-| [blublux-orchestrator](file:///Users/zen/workspace/blublux-phaser-games/.agents/skills/blublux-orchestrator) | Primary driver: worker→reviewer→fix loop, gates, progress tracking |
-| [blublux-worker](file:///Users/zen/workspace/blublux-phaser-games/.agents/skills/blublux-worker) | Implements one step; runs Verify; commits on `blublux-games/S<N>` |
-| [blublux-reviewer](file:///Users/zen/workspace/blublux-phaser-games/.agents/skills/blublux-reviewer) | Reviews diffs; returns `VERDICT: PASS \| CHANGES_REQUESTED` |
+| [blublux-games](skills/blublux-games) | Project context: architecture, locked decisions, verify commands, doc map |
+| [blublux-orchestrator](skills/blublux-orchestrator) | Primary driver: worker→reviewer→fix loop, gates, progress tracking |
+| [blublux-worker](skills/blublux-worker) | Implements one step; runs Verify; commits on `blublux-games/S<N>` |
+| [blublux-reviewer](skills/blublux-reviewer) | Reviews diffs; returns `VERDICT: PASS \| CHANGES_REQUESTED` |
+| [blublux-workflow-foundation](skills/blublux-workflow-foundation) | Foundation workflow (WF-1: S1–S8 parallel foundation segment) |
+| [blublux-workflow-models](skills/blublux-workflow-models) | Pure Models workflow (WF-2: S9–S11 & S20–S21 parallel pure models segment) |
+| [blublux-workflow-reskins](skills/blublux-workflow-reskins) | Sort Reskins workflow (WF-3: S16–S19 parallel reskin segment) |
 
 ## Linked authority skills (symlinked or copied into `.agents/skills/`)
 
 | Skill | Project path | Canonical source | Use for |
 |---|---|---|---|
-| [phaser4-game-factory](file:///Users/zen/workspace/blublux-phaser-games/.agents/skills/phaser4-game-factory) | `.agents/skills/phaser4-game-factory/` | `~/Documents/Claude/Skills/phaser4-game-factory/` | Stack, ads, CI/CD, templates, production checklist |
-| [migration-orchestration](file:///Users/zen/workspace/blublux-phaser-games/.agents/skills/migration-orchestration) | `.agents/skills/migration-orchestration/` | `~/Documents/Claude/Skills/migration-orchestration/` | Orchestration patterns (already applied in `docs/`) |
+| [phaser4-game-factory](skills/phaser4-game-factory) | `.agents/skills/phaser4-game-factory/` | `.agents/skills/phaser4-game-factory/` | Stack, ads, CI/CD, templates, production checklist |
+| [migration-orchestration](skills/migration-orchestration) | `.agents/skills/migration-orchestration/` | `.agents/skills/migration-orchestration/` | Orchestration patterns (already applied in `docs/`) |
 
-## Commands (`.cursor/commands/` or manual execution)
+## Antigravity Skills & Trigger Phrases
 
-| Command | When |
-|---|---|
-| `/blublux-orchestrator` | Start or resume full S1–S33 build |
-| `/blublux-workflow-foundation` | WF-1: S1–S8 (parallel foundation) |
-| `/blublux-workflow-models` | WF-2: S9–S11 ∥ S20–S21 (pure models) |
-| `/blublux-workflow-reskins` | WF-3: S16–S19 (after S15 GO) |
+To run these automations, mention their name or trigger phrases in your prompt to Antigravity:
+
+| Skill / Automation | Trigger / Prompt Phrases | When |
+|---|---|---|
+| [blublux-orchestrator](skills/blublux-orchestrator) | "run the orchestrator", "resume the S1-S33 build", "drive S1-S33" | Start or resume full S1–S33 build |
+| [blublux-workflow-foundation](skills/blublux-workflow-foundation) | "run the foundation workflow", "WF-1" | WF-1: S1–S8 (parallel foundation) |
+| [blublux-workflow-models](skills/blublux-workflow-models) | "run the pure models workflow", "WF-2" | WF-2: S9–S11 ∥ S20–S21 (pure models) |
+| [blublux-workflow-reskins](skills/blublux-workflow-reskins) | "run the sort reskins workflow", "WF-3" | WF-3: S16–S19 (after S15 GO) |
 
 ## Docs (source of truth)
 
 | File | Role |
 |---|---|
-| [plan.md](file:///Users/zen/workspace/blublux-phaser-games/docs/2026-06-27_blublux-games_plan.md) | Why — architecture, decisions, phases |
-| [implementation-steps.md](file:///Users/zen/workspace/blublux-phaser-games/docs/2026-06-27_blublux-games_implementation-steps.md) | How — S1–S33 prompts + Verify blocks |
-| [progress.md](file:///Users/zen/workspace/blublux-phaser-games/docs/2026-06-27_blublux-games_progress.md) | Durable state — read on every resume |
-| [orchestrator-prompt.md](file:///Users/zen/workspace/blublux-phaser-games/docs/2026-06-27_blublux-games_orchestrator-prompt.md) | Original orchestrator spec (Claude Code) |
-| [workflow.md](file:///Users/zen/workspace/blublux-phaser-games/docs/2026-06-27_blublux-games_workflow.md) | Original workflow brief (Claude Code dynamic workflows) |
+| [plan.md](../docs/2026-06-27_blublux-games_plan.md) | Why — architecture, decisions, phases |
+| [implementation-steps.md](../docs/2026-06-27_blublux-games_implementation-steps.md) | How — S1–S33 prompts + Verify blocks |
+| [progress.md](../docs/2026-06-27_blublux-games_progress.md) | Durable state — read on every resume |
+| [orchestrator-prompt.md](../docs/2026-06-27_blublux-games_orchestrator-prompt.md) | Original orchestrator spec (Claude Code) |
+| [workflow.md](../docs/2026-06-27_blublux-games_workflow.md) | Original workflow brief (Claude Code dynamic workflows) |
 
 ## Project-Scoped Rules (Automatically Applied)
 

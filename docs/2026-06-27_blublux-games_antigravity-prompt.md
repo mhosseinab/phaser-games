@@ -14,7 +14,7 @@ tracker: 2026-06-27_blublux-games_progress.md
 Antigravity-tuned variant of [[2026-06-27_blublux-games_orchestrator-prompt]], mapped onto Antigravity's surfaces: the **Agent Manager** (spawn/monitor async subagents), **Artifacts** (task lists, implementation plans, code diffs, browser recordings = the verification trail), the **built-in Browser** (autonomous web/playable verification), the **Terminal** (builds/tests), and **AGENTS.md** (auto-loaded rules). Same plan/steps/progress docs; same gates.
 
 **How to use:**
-1. Open `~/Documents/Claude/Projects/blublux-games/` as the workspace (the monorepo is created here at S1; docs are in `./docs/`).
+1. Open `~/workspace/blublux-phaser-games` as the workspace (docs are in `docs/`).
 2. Let the manager create **`AGENTS.md`** at the repo root at SETUP (from the steps doc's rules section) so every subagent auto-loads the project rules. (Antigravity reads `AGENTS.md` + `GEMINI.md`; `GEMINI.md` wins on conflict. ≤12,000 chars per rules file.)
 3. In the **Agent Manager**, start a new agent and paste the fenced block below. Gemini 3 Pro is fine; it also runs Claude Sonnet 4.5 if you prefer.
 
@@ -27,29 +27,29 @@ feature code yourself. Spawn INDEPENDENT steps as concurrent subagents; SERIALIZ
 a file or a dependency edge. Surface progress as Artifacts (a task list + per-step implementation
 plan + code diff + Verify output + browser recording for playable steps).
 
-REPO ROOT: ~/Documents/Claude/Projects/blublux-games   (the monorepo is created here at S1)
+REPO ROOT: ~/workspace/blublux-phaser-games   (the monorepo workspace)
 
 SOURCES OF TRUTH — read FIRST (cat the ones outside the workspace):
-- ./docs/2026-06-27_blublux-games_implementation-steps.md  — steps S1..S33: each has a ready prompt
+- docs/2026-06-27_blublux-games_implementation-steps.md  — steps S1..S33: each has a ready prompt
   + a Verify block + the dependency graph. THIS IS THE SCRIPT YOU EXECUTE.
-- ./docs/2026-06-27_blublux-games_plan.md  — rationale + the decided forks (§4).
-- ./docs/2026-06-27_blublux-games_progress.md  — durable cross-session state; UPDATE after every step.
-- ~/Documents/Claude/Skills/phaser4-game-factory/  — SKILL.md + references/00..05 +
+- docs/2026-06-27_blublux-games_plan.md  — rationale + the decided forks (§4).
+- docs/2026-06-27_blublux-games_progress.md  — durable cross-session state; UPDATE after every step.
+- .agents/skills/phaser4-game-factory/  — SKILL.md + references/00..05 +
   assets/templates/{monorepo,engine,game,ci}. Stack/architecture/monetization/CI authority; steps
   point to its sections. Replace the templates' @studio/* scope with @blublux/* and the
   __GAME_ID__/__APP_ID__/__APP_NAME__ placeholders with each app's values.
-- ~/Documents/Claude/CLAUDE.md  — owner rules (scope @blublux/*, appIds com.blublux.*, English only,
+- .agents/AGENTS.md  — owner rules (scope @blublux/*, appIds com.blublux.*, English only,
   Conventional Commits, the §2.1 engineering principles).
 For any Phaser 4 API, consult the official Phaser 4 docs / v4 API reference — NEVER Phaser 3 memory;
 the v4 (Beam WebGL2) renderer differs.
 
 SETUP (once, before S1):
-1. Read the steps doc + plan §4 + CLAUDE.md + the skill SKILL.md.
+1. Read the steps doc + plan §4 + .agents/AGENTS.md + the skill SKILL.md.
 2. Create AGENTS.md at the repo root from the steps doc's "Project rules every prompt must respect"
-   section + the §2.1 engineering principles from CLAUDE.md (keep it < 12,000 chars). Every subagent
+   section + the §2.1 engineering principles from .agents/AGENTS.md (keep it < 12,000 chars). Every subagent
    you spawn must operate under it. (If a GEMINI.md exists, it takes precedence — don't duplicate.)
 3. Create a TASK-LIST ARTIFACT mirroring S1..S33 = pending, kept in sync with
-   ./docs/2026-06-27_blublux-games_progress.md (the markdown file is the cross-session source of
+   docs/2026-06-27_blublux-games_progress.md (the markdown file is the cross-session source of
    truth; the Artifact is the live view). On start/resume, READ the progress file first.
 4. Tooling: Node 22+, pnpm (run `corepack enable` if missing). NATIVE steps later need Android SDK +
    JDK 17 + a keystore ON THIS MACHINE — see GATES/TOOLCHAIN.

@@ -13,7 +13,7 @@ skills: ["[[phaser4-game-factory]]", "[[migration-orchestration]]"]
 
 **Status: READY TO EXECUTE (2026-06-27).** Build six puzzle games from **one [[Phaser 4]] + [[Capacitor]] monorepo** over **two reusable pure-model engines** (`engine-sort`, `engine-block`), each game a thin theme/config skin, dual-deployed to web and native AAB — sequenced as **33 standalone, independently verifiable steps**. **The single load-bearing boundary: this is a greenfield build of a SHARED-CORE game factory; players never see the core, the mechanic is written once per engine, and the same code dual-deploys to web — so distribution is packaged as Option B (3 native listings, not 6).**
 
-> Authority for the stack, monorepo, ad+consent adapter, CI/CD, store policy, and the per-game production checklist: the **[[phaser4-game-factory]]** skill (`~/Documents/Claude/Skills/phaser4-game-factory`). The *how* (steps S1–S33) lives in [[2026-06-27_blublux-games_implementation-steps]]; the *drivers* in [[2026-06-27_blublux-games_orchestrator-prompt]] (primary) and [[2026-06-27_blublux-games_workflow]] (gate-free segments); durable state in [[2026-06-27_blublux-games_progress]]. Format precedent: the [[2026-06-27_casino-games_plan|casino-games]] kit.
+> Authority for the stack, monorepo, ad+consent adapter, CI/CD, store policy, and the per-game production checklist: the **[[phaser4-game-factory]]** skill (`.agents/skills/phaser4-game-factory`). The *how* (steps S1–S33) lives in [[2026-06-27_blublux-games_implementation-steps]]; the *drivers* in [[2026-06-27_blublux-games_orchestrator-prompt]] (primary) and [[2026-06-27_blublux-games_workflow]] (gate-free segments); durable state in [[2026-06-27_blublux-games_progress]]. Format precedent: the [[2026-06-27_casino-games_plan|casino-games]] kit.
 
 ---
 
@@ -36,11 +36,11 @@ skills: ["[[phaser4-game-factory]]", "[[migration-orchestration]]"]
 
 | Piece | Location (`file:line` / path) | Status today |
 |---|---|---|
-| Games monorepo `blublux-games/` | `Projects/blublux-games/` | **Does not exist** except `docs/` (this kit). S1 creates it. |
-| Authority skill | `Skills/phaser4-game-factory/SKILL.md` + `references/00..05` + `assets/templates/{monorepo,engine,game,ci}` | Present, read this session. Templates use `@studio/*` scope + `__GAME_ID__`/`__APP_ID__`/`__APP_NAME__` placeholders to replace. |
-| Orchestration skill | `Skills/migration-orchestration/` | Present; templates drove this kit. |
-| `BluBlux` (web lead-gen site) | `Projects/BluBlux/` | **Unrelated** — a Cloudflare/Vite local-services site (dentists/salons/home-services). Do **not** put game code here. |
-| Format precedent | `Projects/casino-games/docs/2026-06-27_casino-games_*` | Same skill, same author, today. This kit mirrors its conventions. |
+| Games monorepo `blublux-phaser-games/` | `~/workspace/blublux-phaser-games` | **Does not exist** except `docs/` (this kit) and `.agents/`. S1 creates it. |
+| `Authority skill` | `.agents/skills/phaser4-game-factory/SKILL.md` + `references/00..05` + `assets/templates/{monorepo,engine,game,ci}` | Present, read this session. Templates use `@studio/*` scope + `__GAME_ID__`/`__APP_ID__`/`__APP_NAME__` placeholders to replace. |
+| `Orchestration skill` | `.agents/skills/migration-orchestration/` | Present; templates drove this kit. |
+| `BluBlux` (web lead-gen site) | `../BluBlux/` | **Unrelated** — a Cloudflare/Vite local-services site (dentists/salons/home-services). Do **not** put game code here. |
+| Format precedent | `../casino-games/docs/2026-06-27_casino-games_*` | Same skill, same author, today. This kit mirrors its conventions. |
 | Market research that seeded this | `OUTPUTS/2026-06-27_android-ad-games_top100*.xlsx`, `OUTPUTS/2026-06-27-20-39_1001spiele_games_with_complexity_and_descriptions.csv` | Present; informs theme/monetization choices, not consumed by the build. |
 
 **Invariants the build must preserve (stated once, enforced everywhere):**
@@ -159,7 +159,7 @@ No secrets, infra, or files are destroyed; the only genuinely destructive/irreve
 ## 8. Rule & doc updates (keep the docs truthful)
 
 - This kit is the source of truth for the build; the **progress tracker** ([[2026-06-27_blublux-games_progress]]) is updated after every step (status/SHA/CARRY-FORWARD note).
-- The owner rules doc (`~/Documents/Claude/CLAUDE.md`) already encodes scope (`@blublux/*`), appIds (`com.blublux.*`), the locked stack, and the §2.1 engineering principles — every worker prompt restates the subset it touches.
+- The project rules doc (`.agents/AGENTS.md`) already encodes scope (`@blublux/*`), appIds (`com.blublux.*`), the locked stack, and the §2.1 engineering principles — every worker prompt restates the subset it touches.
 - Suggested (not auto-applied): add a `[[blublux-games]]` link under the Dev/Entrepreneur MOC when the first AAB lands.
 
 ## 9. Privacy / security / compatibility impact
@@ -198,7 +198,7 @@ No secrets, infra, or files are destroyed; the only genuinely destructive/irreve
 ## 12. Implementation map
 
 - **`packages/config`**: eslint/tsconfig/vite presets (S1).
-- **`packages/engine`**: Phaser scaffold + game-shell + all seams/fakes (S2–S4, S13). Templates: `Skills/phaser4-game-factory/assets/templates/engine/`.
+- **`packages/engine`**: Phaser scaffold + game-shell + all seams/fakes (S2–S4, S13). Templates: `.agents/skills/phaser4-game-factory/assets/templates/engine/`.
 - **`packages/ads-adapter`**: Ads iface + AdMob/UMP + web (S5). Template: `assets/templates/engine/ads-adapter.ts` + `consent.ts`.
 - **`packages/engine-sort`**: model+gen+solver (S9–S11) + view (S12).
 - **`packages/engine-block`**: model+bag (S20–S21) + view (S22).
@@ -206,4 +206,4 @@ No secrets, infra, or files are destroyed; the only genuinely destructive/irreve
 - **CI/CD**: `assets/templates/ci/` (S1 for `ci.yml`; S31 for `release-android.yml` + `Fastfile.android`).
 - **Adapters (IAP/Analytics/Sentry/Storage/Leaderboard)**: `packages/engine` or sibling packages (S6–S8).
 
-Sources (verified in-workspace 2026-06-27): `Skills/phaser4-game-factory/SKILL.md` + `references/00-architecture.md`, `references/03-monetization.md` (read/cited), `Skills/migration-orchestration/references/*` (templates), `Projects/casino-games/docs/*` (format), `~/Documents/Claude/CLAUDE.md` (owner rules), and `npm info` for the pinned versions in §4.7.
+Sources (verified in-workspace 2026-06-27): `.agents/skills/phaser4-game-factory/SKILL.md` + `references/00-architecture.md`, `references/03-monetization.md` (read/cited), `.agents/skills/migration-orchestration/references/*` (templates), `../casino-games/docs/*` (format), `.agents/AGENTS.md` (project rules), and `npm info` for the pinned versions in §4.7.

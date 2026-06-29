@@ -1,3 +1,10 @@
+---
+name: blublux-workflow-foundation
+description: >-
+  Runs the gate-free Foundation segment (WF-1, steps S1–S8) as parallel subagent work.
+  Use when the user wants to start/run the foundation workflow, WF-1, steps S1 to S8, or foundation segment.
+---
+
 # BluBlux Workflow — Foundation (WF-1, S1–S8)
 
 Run the gate-free **Foundation** segment as parallel subagent work.

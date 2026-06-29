@@ -1,3 +1,10 @@
+---
+name: blublux-workflow-models
+description: >-
+  Runs the gate-free pure-model segment (WF-2, steps S9–S11 and S20–S21) for two disjoint engine packages in parallel.
+  Use when the user wants to start/run the pure models workflow, WF-2, steps S9-S11 or S20-S21, or model segment.
+---
+
 # BluBlux Workflow — Pure Models (WF-2, S9–S11 ∥ S20–S21)
 
 Run the gate-free **pure-model** segment — two disjoint engine packages in parallel.
