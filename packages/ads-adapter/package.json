@@ -4,5 +4,10 @@
   "scripts": {
     "build": "tsc -b",
     "test": "vitest run"
-  }
+  },
+  "dependencies": {
+    "@blublux/engine": "workspace:*"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts"
 }

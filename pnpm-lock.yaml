@@ -45,7 +45,11 @@ importers:
         specifier: 4.1.9
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1))
 
-  packages/ads-adapter: {}
+  packages/ads-adapter:
+    dependencies:
+      '@blublux/engine':
+        specifier: workspace:*
+        version: link:../engine
 
   packages/config: {}
 
