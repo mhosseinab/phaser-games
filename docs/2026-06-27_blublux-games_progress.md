@@ -14,9 +14,9 @@ This file is the durable cross-session source of truth for the build status of s
 | S6 | `@blublux/iap-adapter` (RevenueCat) + Remove-Ads | passed | 1 | blublux-games/main | 807e673 | - |
 | S7 | `@blublux/analytics-adapter` (Firebase + pre-consent drop) | passed | 1 | blublux-games/main | 807e673 | - |
 | S8 | Sentry adapter + error handling + debug logs | passed | 1 | blublux-games/main | 807e673 | - |
-| S9 | `@blublux/engine-sort` core model (colors, containers, undo, legality, K=4) | pending | 0 | - | - | - |
-| S10 | Sort level generator (reverse-moves, solvable, tiers) | pending | 0 | - | - | - |
-| S11 | Sort level solver (BFS/DFS, Hint system) | pending | 0 | - | - | - |
+| S9 | `@blublux/engine-sort` core model (colors, containers, undo, legality, K=4) | passed | 1 | blublux-games/main | HEAD | - |
+| S10 | Sort level generator (reverse-moves, solvable, tiers) | passed | 1 | blublux-games/main | HEAD | - |
+| S11 | Sort level solver (BFS/DFS, Hint system) | passed | 1 | blublux-games/main | HEAD | - |
 | S12 | Sort game scene (Phaser view + state binding + moves) | pending | 0 | - | - | - |
 | S13 | Shared game-shell (menu, daily challenge, streak, stats, coins) | pending | 0 | - | - | - |
 | S14 | Butterfly Sort full composition root + integration | pending | 0 | - | - | - |
