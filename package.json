@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "packageManager": "pnpm@9.0.0",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
@@ -12,17 +14,23 @@
     "ci": "turbo run lint typecheck test build --affected"
   },
   "devDependencies": {
+    "@capacitor-community/admob": "8.0.0",
+    "@capacitor/cli": "8.4.1",
+    "@capacitor/core": "8.4.1",
+    "@playwright/test": "1.61.1",
+    "@revenuecat/purchases-capacitor": "13.2.0",
+    "@sentry/capacitor": "4.2.0",
+    "canvas": "^3.2.3",
+    "eslint": "10.6.0",
+    "happy-dom": "^20.10.6",
+    "jsdom": "^29.1.1",
+    "phaser": "4.2.0",
     "turbo": "2.10.0",
     "typescript": "6.0.3",
     "vite": "8.1.0",
-    "vitest": "4.1.9",
-    "eslint": "10.6.0",
-    "@playwright/test": "1.61.1",
-    "phaser": "4.2.0",
-    "@capacitor/core": "8.4.1",
-    "@capacitor/cli": "8.4.1",
-    "@capacitor-community/admob": "8.0.0",
-    "@revenuecat/purchases-capacitor": "13.2.0",
-    "@sentry/capacitor": "4.2.0"
+    "vitest": "4.1.9"
+  },
+  "dependencies": {
+    "@capacitor/preferences": "^6.0.3"
   }
 }
