@@ -1,0 +1,4 @@
+# Root of the studio monorepo. See references/00-architecture.md
+packages:
+  - 'packages/*'   # @studio/engine, @studio/ads-adapter, @studio/config
+  - 'apps/*'       # one Vite app per game

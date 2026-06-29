@@ -1,0 +1,212 @@
+# =============================================================================
+# BluBlux Games — organized ignore rules
+# TypeScript monorepo (pnpm + Turborepo + Vite + Capacitor) + Python tooling
+# =============================================================================
+
+# --- OS & editor -------------------------------------------------------------
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+*.swp
+*.swo
+*~
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# --- GitHub (CLI, Actions local, runner artifacts) ---------------------------
+
+# GitHub CLI local config overrides (never commit tokens)
+.gh/
+*.local
+
+# act — run GitHub Actions locally
+.act/
+.actrc.local
+
+# Self-hosted runner / workflow debug output
+.github/workflows/*.local.yml
+.github/runner-logs/
+
+# --- Dart / Melos (orchestration; commit pubspec.lock) -----------------------
+
+.dart_tool/
+pubspec_overrides.yaml
+
+# --- TypeScript / Node.js / pnpm / Turborepo --------------------------------
+
+node_modules/
+.pnpm-store/
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+.vercel/
+.netlify/
+
+# Turborepo
+.turbo/
+
+# TypeScript
+*.tsbuildinfo
+
+# Test & coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Vite
+vite.config.ts.timestamp-*
+
+# ESLint / Prettier caches
+.eslintcache
+.prettiercache
+
+# Package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- Python (scripts, data tooling, uv workspace) ----------------------------
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+.Python
+.venv/
+venv/
+ENV/
+env/
+.uv/
+uv.lock.bak
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+.eggs/
+*.whl
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# Pytest / coverage / type checkers
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+dmypy.json
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Jupyter
+.ipynb_checkpoints/
+
+# pyenv / pipenv
+.python-version
+Pipfile.lock
+
+# --- Environment & secrets (never commit) ------------------------------------
+
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Android signing (see phaser4-game-factory references/04-ci-cd.md)
+*.keystore
+*.jks
+key.properties
+android/key.properties
+**/local.properties
+
+# iOS signing / provisioning (CI uses secrets; local copies stay out of git)
+*.p12
+*.mobileprovision
+*.cer
+*.certSigningRequest
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# App Store Connect / Play Console service account keys
+*-service-account.json
+play-config.json
+AuthKey_*.p8
+
+# Turbo remote cache token file (use CI secrets instead)
+.turbo/config.json.local
+
+# --- Capacitor / native mobile -----------------------------------------------
+
+# Capacitor live-reload dev config — must not ship
+capacitor.config.ts.local
+
+# Xcode (keep ios/ project; ignore user/build artifacts)
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+**/xcuserdata/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+ios/App/Pods/
+ios/App/App/public/
+
+# Android / Gradle (keep android/ project; ignore build outputs)
+*.apk
+*.aab
+*.ap_
+*.dex
+android/.gradle/
+android/**/build/
+android/local.properties
+android/captures/
+android/.externalNativeBuild/
+android/.cxx/
+android/app/src/main/assets/public/
+
+# --- Game assets & generated (large / machine-local) -------------------------
+
+# Texture atlases / audio exports (regenerate from source)
+*.psd
+*.blend1
+
+# Local QA captures
+screenshots/local/
+recordings/
+
+# --- Misc tooling ------------------------------------------------------------
+
+.task/
+.cache/
+tmp/
+temp/
+*.log
+*.tmp
+*.bak

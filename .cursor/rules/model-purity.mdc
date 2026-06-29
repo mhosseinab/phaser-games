@@ -1,0 +1,32 @@
+---
+description: Model purity rules for engine-sort and engine-block pure TypeScript models
+globs: packages/engine-*/src/model/**/*
+alwaysApply: false
+---
+
+# Model Purity
+
+Code in `packages/engine-*/src/model` must be **headless-playable in Node**.
+
+## Forbidden
+
+- `import` from `phaser` or any canvas/DOM API
+- `Date.now()` or `Math.random()` — use injected `Clock` / `Rng` from `@blublux/engine`
+- Direct SDK calls (ads, firebase, capacitor, revenuecat)
+
+## Required
+
+- Immutable state transitions (return new state, don't mutate)
+- Deterministic: same inputs + seed → same outputs
+- TDD: write failing Vitest first, then implement
+
+## Verify before commit
+
+```bash
+git grep -nE "phaser|Math\.random|Date\.now" -- packages/engine-sort/src/model packages/engine-block/src/model
+# must return empty
+
+pnpm --filter @blublux/engine-sort test   # or engine-block
+```
+
+Sort generator must pass ≥1,000 seeds/tier @ 100% solvable in CI.

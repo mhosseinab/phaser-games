@@ -1,0 +1,41 @@
+# .github/workflows/release-ios.yml — build one game's IPA and upload to TestFlight.
+# macOS runners are billed ~$0.08/min — validate on a few games before scaling. See references/04.
+name: Release iOS
+on:
+  push:
+    tags: ['game-*-v*']
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: ruby/setup-ruby@v1
+        with: { ruby-version: '3.2', bundler-cache: true }
+
+      - run: pnpm install --frozen-lockfile
+      - id: game
+        run: echo "id=$(echo '${{ github.ref_name }}' | sed -E 's/-v[0-9].*$//')" >> "$GITHUB_OUTPUT"
+
+      - run: pnpm --filter "@studio/${{ steps.game.outputs.id }}" build:native
+      - run: pnpm --filter "@studio/${{ steps.game.outputs.id }}" exec cap sync ios
+
+      - name: Fastlane closed_beta
+        working-directory: apps/${{ steps.game.outputs.id }}
+        env:
+          APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          APPLE_ISSUER_ID: ${{ secrets.APPLE_ISSUER_ID }}
+          APPLE_KEY_CONTENT: ${{ secrets.APPLE_KEY_CONTENT }}            # p8 contents
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          CERTIFICATE_STORE_URL: ${{ secrets.CERTIFICATE_STORE_URL }}   # private match repo
+          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+          DEVELOPER_APP_ID: ${{ secrets[format('IOS_APP_ID_{0}', steps.game.outputs.id)] }}
+          DEVELOPER_APP_IDENTIFIER: ${{ secrets[format('IOS_BUNDLE_{0}', steps.game.outputs.id)] }}
+          PROVISIONING_PROFILE_SPECIFIER: ${{ secrets[format('IOS_PROFILE_{0}', steps.game.outputs.id)] }}
+        run: bundle exec fastlane closed_beta

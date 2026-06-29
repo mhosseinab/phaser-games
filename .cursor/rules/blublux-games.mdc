@@ -1,0 +1,39 @@
+---
+description: BluBlux Games project conventions — monorepo scope, architecture invariants, and build commands
+alwaysApply: true
+---
+
+# BluBlux Games
+
+Scope: `@blublux/*`, appIds `com.blublux.*`. Six games, two engines, Phaser 4 + Capacitor.
+
+## Architecture (enforce always)
+
+- **Model purity**: `packages/engine-*/src/model` — zero Phaser/DOM; no `Date.now()`/`Math.random()`; use injected `Clock`/`Rng`
+- **View thinness**: Phaser scenes render model state; no game rules in scenes
+- **Theme = config only**: reskins edit `apps/*/src/themes/**` only; never copy logic into `apps/*`
+- **DI**: SDK imports only in `composition-root.ts` and adapter packages
+- **UMP**: consent before ad loading — never bypass `@blublux/ads-adapter`
+- **Native**: Vite `base:'./'` for `--mode native`
+- **TDD**: model logic written test-first
+
+## Build commands
+
+```bash
+pnpm turbo run typecheck lint test build
+pnpm --filter @blublux/<pkg> test
+```
+
+## Docs (source of truth)
+
+- Steps: `docs/2026-06-27_blublux-games_implementation-steps.md`
+- Progress: `docs/2026-06-27_blublux-games_progress.md`
+- Factory skill: `.cursor/skills/phaser4-game-factory/`
+
+## Phaser 4
+
+Use Context7 for v4 APIs. Never use Phaser 3 memory.
+
+## Human gates (never auto-cross)
+
+S15 (review slice), S31 (secrets), S32 (device QA), S33 (store submission).

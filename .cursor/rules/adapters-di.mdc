@@ -1,0 +1,37 @@
+---
+description: Composition root and adapter DI boundaries for BluBlux apps
+globs: apps/**/src/composition-root.ts,packages/ads-adapter/**,packages/engine/src/adapters/**
+alwaysApply: false
+---
+
+# DI & Adapter Boundaries
+
+Concrete SDK imports belong **only** in:
+
+- `apps/*/src/composition-root.ts` — wires all ports for that app
+- `packages/ads-adapter/src/` — AdMob, UMP, web ads
+- `packages/engine/src/adapters/` — IAP, Analytics, Storage, Leaderboard, Sentry
+
+Everywhere else: depend on **interfaces** from `@blublux/engine` ports.
+
+## UMP invariant (ads-adapter)
+
+```
+initialize() → requestConsentInfo() → showConsentForm() if required
+→ canRequestAds === true → ONLY THEN load/show
+```
+
+Unit test must assert `interstitial()`/`rewarded()` reject when `canRequestAds===false`.
+
+## Dev vs prod
+
+- Test ad unit IDs when `import.meta.env.DEV`
+- Never hardcode live `ca-app-pub-*` IDs in source
+- Analytics: drop events until `setConsent(true)`
+
+## Verify
+
+```bash
+git grep -nE "@capacitor|firebase|revenuecat|admob" apps/*/src
+# hits ONLY composition-root.ts
+```
