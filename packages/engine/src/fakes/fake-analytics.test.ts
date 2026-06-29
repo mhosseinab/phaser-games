@@ -13,6 +13,6 @@ describe('FakeAnalytics', () => {
     a.setConsent(true);
     a.log('test');
     expect(a.events.length).toBe(1);
-    expect(a.events[0].event).toBe('test');
+    expect(a.events[0]!.event).toBe('test');
   });
 });

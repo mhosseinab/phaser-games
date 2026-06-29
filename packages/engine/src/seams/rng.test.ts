@@ -40,7 +40,7 @@ describe('Rng', () => {
     const counts = [0, 0, 0];
     for (let i = 0; i < 3000; i++) {
       const val = r.intRange(0, 3);
-      counts[val]++;
+      counts[val] = counts[val]! + 1;
     }
     expect(counts[0]).toBeGreaterThan(900);
     expect(counts[1]).toBeGreaterThan(900);

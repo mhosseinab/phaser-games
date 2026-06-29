@@ -8,7 +8,7 @@ This file is the durable cross-session source of truth for the build status of s
 |---|---|---|---|---|---|---|
 | S1 | Scaffold monorepo, Turborepo, `@blublux/config`, CI | passed | 1 | blublux-games/main | 995a390 | - |
 | S2 | `Rng` + `Clock` seams (pure, TDD, determinism) | passed | 1 | blublux-games/main | 945be18 | - |
-| S3 | Core interfaces / seams + fakes | pending | 0 | - | - | - |
+| S3 | Core interfaces / seams + fakes | passed | 1 | blublux-games/main | bd7bd9d | - |
 | S4 | View scaffold + scale helper + pool + audio (Phaser 4) | pending | 0 | - | - | - |
 | S5 | `@blublux/ads-adapter` + UMP consent flow (test ad IDs) | pending | 0 | - | - | - |
 | S6 | `@blublux/iap-adapter` (RevenueCat) + Remove-Ads | pending | 0 | - | - | - |

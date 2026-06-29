@@ -23,13 +23,15 @@ export function createRng(seed: number): Rng {
       return Math.floor(next() * (max - min)) + min;
     },
     pick<T>(arr: T[]) {
-      return arr[Math.floor(next() * arr.length)];
+      return arr[Math.floor(next() * arr.length)]!;
     },
     shuffle<T>(arr: T[]) {
       const copy = [...arr];
       for (let i = copy.length - 1; i > 0; i--) {
         const j = Math.floor(next() * (i + 1));
-        [copy[i], copy[j]] = [copy[j], copy[i]];
+        const temp = copy[i]!;
+        copy[i] = copy[j]!;
+        copy[j] = temp;
       }
       return copy;
     },
