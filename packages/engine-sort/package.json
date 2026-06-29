@@ -6,5 +6,8 @@
     "test": "vitest run"
   },
   "main": "dist/index.js",
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@blublux/engine": "workspace:^"
+  }
 }

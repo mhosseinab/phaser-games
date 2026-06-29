@@ -11,9 +11,9 @@ This file is the durable cross-session source of truth for the build status of s
 | S3 | Core interfaces / seams + fakes | passed | 1 | blublux-games/main | bd7bd9d | - |
 | S4 | View scaffold + scale helper + pool + audio (Phaser 4) | passed | 1 | blublux-games/main | f6e1e30 | - |
 | S5 | `@blublux/ads-adapter` + UMP consent flow (test ad IDs) | passed | 1 | blublux-games/main | 70b8279 | - |
-| S6 | `@blublux/iap-adapter` (RevenueCat) + Remove-Ads | pending | 0 | - | - | - |
-| S7 | `@blublux/analytics-adapter` (Firebase + pre-consent drop) | pending | 0 | - | - | - |
-| S8 | Sentry adapter + error handling + debug logs | pending | 0 | - | - | - |
+| S6 | `@blublux/iap-adapter` (RevenueCat) + Remove-Ads | passed | 1 | blublux-games/main | 807e673 | - |
+| S7 | `@blublux/analytics-adapter` (Firebase + pre-consent drop) | passed | 1 | blublux-games/main | 807e673 | - |
+| S8 | Sentry adapter + error handling + debug logs | passed | 1 | blublux-games/main | 807e673 | - |
 | S9 | `@blublux/engine-sort` core model (colors, containers, undo, legality, K=4) | pending | 0 | - | - | - |
 | S10 | Sort level generator (reverse-moves, solvable, tiers) | pending | 0 | - | - | - |
 | S11 | Sort level solver (BFS/DFS, Hint system) | pending | 0 | - | - | - |

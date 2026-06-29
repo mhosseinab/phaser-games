@@ -70,7 +70,11 @@ importers:
 
   packages/engine-block: {}
 
-  packages/engine-sort: {}
+  packages/engine-sort:
+    dependencies:
+      '@blublux/engine':
+        specifier: workspace:^
+        version: link:../engine
 
 packages:
 
