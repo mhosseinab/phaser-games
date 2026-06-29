@@ -15,15 +15,15 @@ describe('clear', () => {
     const grid = createGrid('box9', 9);
     
     // Fill row 2
-    for (let c = 0; c < 9; c++) grid.cells[2][c] = true;
+    for (let c = 0; c < 9; c++) grid.cells[2]![c] = true;
     
     // Fill col 4
-    for (let r = 0; r < 9; r++) grid.cells[r][4] = true;
+    for (let r = 0; r < 9; r++) grid.cells[r]![4] = true;
     
     // Fill box 8 (bottom right: rows 6..8, cols 6..8)
     for (let r = 6; r < 9; r++) {
       for (let c = 6; c < 9; c++) {
-        grid.cells[r][c] = true;
+        grid.cells[r]![c] = true;
       }
     }
     
@@ -34,9 +34,9 @@ describe('clear', () => {
     expect(result.cleared.boxes).toEqual([8]);
     
     // Check they are cleared
-    expect(result.state.cells[2][0]).toBe(false);
-    expect(result.state.cells[0][4]).toBe(false);
-    expect(result.state.cells[6][6]).toBe(false);
+    expect(result.state.cells[2]![0]).toBe(false);
+    expect(result.state.cells[0]![4]).toBe(false);
+    expect(result.state.cells[6]![6]).toBe(false);
   });
 
   it('does not clear 3x3 boxes in lines mode (8x8)', () => {
@@ -45,12 +45,12 @@ describe('clear', () => {
     // Fill top-left 3x3 (which would be a box, though lines is 8x8 so boxes dont perfectly align, but shouldn't clear anyway)
     for (let r = 0; r < 3; r++) {
       for (let c = 0; c < 3; c++) {
-        grid.cells[r][c] = true;
+        grid.cells[r]![c] = true;
       }
     }
     
     const result = clear(grid);
     expect(result.cleared.boxes).toEqual([]);
-    expect(result.state.cells[0][0]).toBe(true); // Still there
+    expect(result.state.cells[0]![0]).toBe(true); // Still there
   });
 });
