@@ -7,7 +7,7 @@ export function canPlace(state: GridState, piece: Piece, targetRow: number, targ
     if (r < 0 || r >= state.size || c < 0 || c >= state.size) {
       return false; // Out of bounds
     }
-    if (state.cells[r][c]) {
+    if (state.cells[r]![c]) {
       return false; // Collision
     }
   }
@@ -21,7 +21,7 @@ export function place(state: GridState, piece: Piece, targetRow: number, targetC
   
   const newCells = state.cells.map(row => [...row]);
   for (const cell of piece.cells) {
-    newCells[targetRow + cell.row][targetCol + cell.col] = true;
+    newCells[targetRow + cell.row]![targetCol + cell.col] = true;
   }
   
   return {

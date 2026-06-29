@@ -8,7 +8,7 @@ export function clear(state: GridState): { state: GridState; cleared: ClearedLin
   for (let r = 0; r < size; r++) {
     let full = true;
     for (let c = 0; c < size; c++) {
-      if (!state.cells[r][c]) {
+      if (!state.cells[r]![c]) {
         full = false;
         break;
       }
@@ -20,7 +20,7 @@ export function clear(state: GridState): { state: GridState; cleared: ClearedLin
   for (let c = 0; c < size; c++) {
     let full = true;
     for (let r = 0; r < size; r++) {
-      if (!state.cells[r][c]) {
+      if (!state.cells[r]![c]) {
         full = false;
         break;
       }
@@ -35,7 +35,7 @@ export function clear(state: GridState): { state: GridState; cleared: ClearedLin
         let full = true;
         for (let r = 0; r < 3; r++) {
           for (let c = 0; c < 3; c++) {
-            if (!state.cells[br * 3 + r][bc * 3 + c]) {
+            if (!state.cells[br * 3 + r]![bc * 3 + c]) {
               full = false;
               break;
             }
@@ -52,17 +52,17 @@ export function clear(state: GridState): { state: GridState; cleared: ClearedLin
   const newCells = state.cells.map(row => [...row]);
 
   for (const r of cleared.rows) {
-    for (let c = 0; c < size; c++) newCells[r][c] = false;
+    for (let c = 0; c < size; c++) newCells[r]![c] = false;
   }
   for (const c of cleared.cols) {
-    for (let r = 0; r < size; r++) newCells[r][c] = false;
+    for (let r = 0; r < size; r++) newCells[r]![c] = false;
   }
   for (const b of cleared.boxes) {
     const br = Math.floor(b / 3) * 3;
     const bc = (b % 3) * 3;
     for (let r = 0; r < 3; r++) {
       for (let c = 0; c < 3; c++) {
-        newCells[br + r][bc + c] = false;
+        newCells[br + r]![bc + c] = false;
       }
     }
   }

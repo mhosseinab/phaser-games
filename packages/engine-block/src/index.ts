@@ -1,1 +1,2 @@
-export {};
+export * from "./model";
+export * from "./gen";
