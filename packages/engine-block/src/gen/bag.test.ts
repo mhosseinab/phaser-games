@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { nextTrio, BagState, PIECES } from "./bag";
-import { createRng } from "@blublux/engine/src/seams/rng";
+import { createRng } from "@blublux/engine";
 import { GridState } from "../model/types";
 import { canPlace } from "../model/grid";
 
