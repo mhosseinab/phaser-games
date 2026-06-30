@@ -17,17 +17,17 @@ This file is the durable cross-session source of truth for the build status of s
 | S9 | `@blublux/engine-sort` core model (colors, containers, undo, legality, K=4) | passed | 1 | blublux-games/main | HEAD | - |
 | S10 | Sort level generator (reverse-moves, solvable, tiers) | passed | 1 | blublux-games/main | HEAD | - |
 | S11 | Sort level solver (BFS/DFS, Hint system) | passed | 1 | blublux-games/main | HEAD | - |
-| S12 | Sort game scene (Phaser view + state binding + moves) | pending | 0 | - | - | - |
-| S13 | Shared game-shell (menu, daily challenge, streak, stats, coins) | pending | 0 | - | - | - |
+| S12 | `engine-sort` Phaser view (theme-swappable) | passed | 1 | blublux-games/main | 9ae4a96 | Carry-forward: dynamic layout, movesCount tracking, ad triggers. |
+| S13 | Shared game-shell (menu, daily challenge, streak, stats, coins) | passed | 1 | blublux-games/main | b7b0dcc | - |
 | S14 | Butterfly Sort full composition root + integration | pending | 0 | - | - | - |
 | S15 | Butterfly Sort native build (AAB signing) + Playwright smoke + review slice (GATE) | pending | 0 | - | - | - |
 | S16 | iColorcoin Sort reskin (palette, symbol, theme picker) | pending | 0 | - | - | - |
 | S17 | Sand Sort reskin (palette, symbol, custom physics/shader effect config) | pending | 0 | - | - | - |
 | S18 | Nuts & Bolts Sort reskin (palette, symbol, unscrew/screw visual config) | pending | 0 | - | - | - |
 | S19 | Sort Collection in-app theme picker + web dual-deploy | pending | 0 | - | - | - |
-| S20 | `@blublux/engine-block` core model (9x9 grid, place, scoring, trio generation) | pending | 0 | - | - | - |
-| S21 | Block generator + anti-frustration trio bag | pending | 0 | - | - | - |
-| S22 | Block game scene (Phaser view + state binding + placements) | pending | 0 | - | - | - |
+| S20 | `@blublux/engine-block` core model (9x9 grid, place, scoring, trio generation) | passed | 2 | blublux-games/main | 6ba7fc9 | - |
+| S21 | Block generator + anti-frustration trio bag | passed | 1 | blublux-games/main | b309b20 | - |
+| S22 | Block game scene (Phaser view + state binding + placements) | passed | 1 | blublux-games/main | 2f74e4d | - |
 | S23 | Knotwork full composition root + ad/IAP/analytics wiring | pending | 0 | - | - | - |
 | S24 | Knotwork native build (AAB signing) + Playwright smoke + web dual-deploy | pending | 0 | - | - | - |
 | S25 | Beaver's Block grid (8x8, lines-mode clear) view binding | pending | 0 | - | - | - |

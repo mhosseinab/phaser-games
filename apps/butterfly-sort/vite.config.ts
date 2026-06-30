@@ -18,7 +18,6 @@ export default defineConfig(({ mode }) => ({
     target: 'es2022',
     rollupOptions: {
       output: {
-        manualChunks: { phaser: ['phaser'] }, // cache the engine separately from game code
       },
     },
   },
