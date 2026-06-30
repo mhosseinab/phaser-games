@@ -98,7 +98,7 @@ export function renderTray(
     piecesData.length = 0;
     for (let i = 0; i < 3; i++) {
       if (pieces[i]) {
-        createPiece(pieces[i], i);
+        createPiece(pieces[i] as Piece, i);
       }
     }
   }
