@@ -19,8 +19,8 @@ This file is the durable cross-session source of truth for the build status of s
 | S11 | Sort level solver (BFS/DFS, Hint system) | passed | 1 | blublux-games/main | HEAD | - |
 | S12 | `engine-sort` Phaser view (theme-swappable) | passed | 1 | blublux-games/main | 9ae4a96 | Carry-forward: dynamic layout, movesCount tracking, ad triggers. |
 | S13 | Shared game-shell (menu, daily challenge, streak, stats, coins) | passed | 1 | blublux-games/main | b7b0dcc | - |
-| S14 | Butterfly Sort full composition root + integration | pending | 0 | - | - | - |
-| S15 | Butterfly Sort native build (AAB signing) + Playwright smoke + review slice (GATE) | pending | 0 | - | - | - |
+| S14 | Butterfly Sort full composition root + integration | passed | 1 | blublux-games/main | HEAD | - |
+| S15 | Butterfly Sort native build (AAB signing) + Playwright smoke + review slice (GATE) | passed | 1 | blublux-games/main | HEAD | - |
 | S16 | iColorcoin Sort reskin (palette, symbol, theme picker) | pending | 0 | - | - | - |
 | S17 | Sand Sort reskin (palette, symbol, custom physics/shader effect config) | pending | 0 | - | - | - |
 | S18 | Nuts & Bolts Sort reskin (palette, symbol, unscrew/screw visual config) | pending | 0 | - | - | - |
