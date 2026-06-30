@@ -30,7 +30,7 @@ This file is the durable cross-session source of truth for the build status of s
 | S22 | Block game scene (Phaser view + state binding + placements) | passed | 1 | blublux-games/main | 2f74e4d | - |
 | S23 | Knotwork full composition root + ad/IAP/analytics wiring | pending | 0 | - | - | - |
 | S24 | Knotwork native build (AAB signing) + Playwright smoke + web dual-deploy | pending | 0 | - | - | - |
-| S25 | Beaver's Block grid (8x8, lines-mode clear) view binding | pending | 0 | - | - | - |
+| S25 | Beaver's Block grid (8x8, lines-mode clear) view binding | passed | 1 | blublux-games/main | HEAD | - |
 | S26 | Beaver's Block composition root + build + Playwright smoke + web dual-deploy | pending | 0 | - | - | - |
 | S27 | Sound/FX polish + prefers-reduced-motion check (all 6) | pending | 0 | - | - | - |
 | S28 | Haptics integration + symbol-per-color high contrast mode (all 6) | pending | 0 | - | - | - |
