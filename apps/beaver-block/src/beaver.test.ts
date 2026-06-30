@@ -28,7 +28,7 @@ describe('Beaver Block Lines Mode', () => {
 });
 
 describe('Monetization Gating', () => {
-  it('prevents interstitial if not consented', () => {
+  it('prevents interstitial if not consented', async () => {
     let requested = false;
     const fakeConsent = {
       request: vi.fn().mockResolvedValue({ canRequestAds: false })
@@ -41,7 +41,8 @@ describe('Monetization Gating', () => {
       rewarded: vi.fn().mockResolvedValue({ rewarded: false })
     };
     
-    fakeConsent.request().then((consent: any) => fakeAds.init(consent.canRequestAds));
+    const consent = await fakeConsent.request();
+    fakeAds.init(consent.canRequestAds);
     expect(fakeAds.init).not.toHaveBeenCalledWith(true);
   });
   
