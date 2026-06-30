@@ -97,8 +97,9 @@ export function renderTray(
     container.removeAll(true);
     piecesData.length = 0;
     for (let i = 0; i < 3; i++) {
-      if (pieces[i]) {
-        createPiece(pieces[i], i);
+      const piece = pieces[i];
+      if (piece) {
+        createPiece(piece, i);
       }
     }
   }
